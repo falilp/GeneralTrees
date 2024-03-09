@@ -100,7 +100,7 @@ template<typename tValue>
 void pruning(Agen<tValue> &agen, typename Agen<tValue>::nodo node){
     if(node != A.NODO_NULO){
         while(agen.hijoIzqdo(node) != agen.NODO_NULO){
-            poda(agen,ahen.hijoIzqdo(node));
+            pruning(agen,ahen.hijoIzqdo(node));
             agen.eliminarHijoIzqdo(node);
         }
     }
