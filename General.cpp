@@ -1,8 +1,9 @@
 #include <iostream>
 #include "agen.h"
 
+/* Exercise 1: Implements a subprogram that, given a general tree, calculates its degree. */
 #pragma region Exercise1
-// exercise 1: Implements a subprogram that, given a general tree, calculates its degree.
+
 template <typename tValue>
 unsigned int degree(const Agen<tValue> &agen, const typename Agen<tValue>::nodo node){
     if(node == agen.NODO_NULO) return 0;
@@ -18,6 +19,7 @@ unsigned int degree(const Agen<tValue> &agen, const typename Agen<tValue>::nodo 
         return std::max(degree,std::max(degree(agen,agen.hijoIzqdo(node)),degree(agen,agen.hermDrcho(node))));
     }
 }
+
 /*other option:
 template <typename tValue>
 unsigned int degree(const Agen<tValue> &agen, const typename Agen<tValue>::nodo node){
@@ -41,25 +43,32 @@ unsigned int degree(const Agen<tValue> &agen, const typename Agen<tValue>::nodo 
     }
 }
 */
+
 template <typename tValue>
 unsigned int degreeGeneralTree(const Agen<tValue> &agen){
     if(agen.arbolVacio()) return 0;
     else return degree(agen,agen.raiz());
 }
+
 #pragma endregion
 
+
+/* Exercise 2: Implements a subprogram that, given a tree and a node within said tree, determines the depth of this node in the tree.*/
 #pragma region Exercise2
-// exercise 2: Implements a subprogram that, given a tree and a node within said tree, determines the depth of this node in the tree.
+
 template <typename tValue>
 unsigned int depthNodeTree(const Agen<tValue> &agen,const typename Agen<tValue>::nodo node){
     if(agen.arbolVacio() || agen.NODO_NULO == node || agen.padre(node) == agen.NODO_NULO) return 0;
     else return 1 + depthNodeTree(agen,agen.padre(node));
 }
+
 #pragma endregion
 
+
+/* Exercise 3: The imbalance of a general tree is defined as the maximum difference between the heights of the subtrees
+lowest and highest of each level. Implements an applet that calculates the degree of imbalance of a general tree. */
 #pragma region Exercise3
-// exercise 3: The imbalance of a general tree is defined as the maximum difference between the heights of the subtrees
-// lowest and highest of each level. Implements an applet that calculates the degree of imbalance of a general tree.
+
 template <typename tValue>
 unsigned int hight(const Agen<tValue> &agen, const typename Agen<tValue>::nodo node){
     if(node == agen.NODO_NULO) return 0;
@@ -93,9 +102,11 @@ unsigned int imbalanceTree(const Agen<tValue> &agen){
 }
 #pragma endregion
 
+
+/* Exercise 4: Given a general tree of integers A and an integer x, implement an applet that performs the pruning
+from A from x. It is assumed that there are no repeated elements in A. */
 #pragma region Exercise4
-// exercise 4: Given a general tree of integers A and an integer x, implement an applet that performs the pruning
-// from A from x. It is assumed that there are no repeated elements in A.
+
 template<typename tValue>
 void pruning(Agen<tValue> &agen, typename Agen<tValue>::nodo node){
     if(node != A.NODO_NULO){
@@ -128,4 +139,5 @@ void pruningX(Agen<tValue> &agen, tValue X){
         else findX(agen,X,agen.raiz());
     }
 }
+
 #pragma endregion
