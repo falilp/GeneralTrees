@@ -72,9 +72,41 @@ bool similarTrees(const Agen<tValue> &agen1, const Agen<tValue> &agen2){
 #pragma endregion
 
 
-/* Exercise 3: Similar trees are those whose leaves match in position and element. */
+/* Exercise 3: The imbalance of a general tree is the maximum difference in the weights 
+of the subtrees of N, the weight of the node is the number of leaf nodes. */
 #pragma region Exercise3
 
+template <typename tValue>
+unsigned int numberOfLeafs(const Agen<tValue> &agen, const typename Agen<tValue>::nodo node){
+    if(node == agen.NODO_NULO) return 0;
+    else if(agen.hijoIzqdo(node) == agen.NODO_NULO) return 1 + numberOfLeafs(agen,agen.hermDrcho(node));
+    else return numberOfLeafs(agen,agen.hijoIzqdo(node)) + numberOfLeafs(agen,agen.hermDrcho(node));
+}
 
+template <typename tValue>
+unsigned int imbalanceAgen(const Agen<tValue> &agen, const typename Agen<tValue>::nodo node){
+    if(node == agen.NODO_NULO) return 0;
+    else{
+        unsigned int minWeight = UINT_MAX;
+        unsigned int maxWeight = 0;
+        unsigned int weight = 0;
+        typename Agen<tValue>::nodo auxiliarNode = agen.hijoIzqdo(node);
+
+        while(auxiliarNode != agen.NODO_NULO){
+            weight = numberOfLeafs(agen,auxiliarNode);
+            maxWeight = std::max(maxWeight,weight);
+            minWeight = std::min(minWeight,weight);
+            auxiliarNode = agen.hermDrcho(auxiliarNode);
+        }
+
+        return std::max((maxWeight-minWeight),std::max(imbalanceAgen(agen,agen.hijoIzqdo(node)),imbalanceAgen(agen,agen.hermDrcho(node))));
+    }
+}
+
+template <typename tValue>
+unsigned int maximunImbalance(const Agen<tValue> &agen){
+    if(agen.arbolVacio()) return 0;
+    else imbalanceAgen(agen,agen.raiz());
+}
 
 #pragma endregion
