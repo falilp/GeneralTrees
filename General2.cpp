@@ -110,3 +110,49 @@ unsigned int maximunImbalance(const Agen<tValue> &agen){
 }
 
 #pragma endregion
+
+/* Exercise 4: Implements a subprogram that, given a general tree, calculates its degree. */
+#pragma region Exercise4
+
+template <typename tValue>
+unsigned int calculateDegree(const Agen<tValue> &agen, const typename Agen<tValue>::nodo node){
+    if(node == agen.NODO_NULO) return 0;
+    else{
+        typename Agen<tValue>::nodo auxiliarNode = agen.hijoIzqdo(node);
+        unsigned int degree = 0;
+
+        while(auxiliarNode != agen.NODO_NULO){
+            degree++;
+            auxiliarNode = agen.hermDrcho(auxiliarNode);
+        }
+        
+        return std::max(degree,std::max(calculateDegree(agen,agen.hijoIzqdo(node)),calculateDegree(agen,agen.hermDrcho(node))));
+    }
+}
+
+template <typename tValue>
+unsigned int degreeOfAgen(const Agen<tValue> &agen){
+    if(agen.arbolVacio()) return 0;
+    else return calculateDegree(agen,agen.raiz());
+}
+
+#pragma endregion
+
+/* Exercise 5: Implements a generic function that transforms a General tree of a generic type T, eliminating the own 
+descendants of all those nodes whose content is, at the same time, greater than or equal to their own ancestors and
+less than or equal to their own descendants. */
+#pragma region Exercise5
+
+#pragma endregion
+
+/* Exercise 6: Represent a flat figure:
+    Quaternary Tree They have exactly 0 or 4 children.
+    A leaf node can be white or black.
+    Intermediate nodes have no color.
+    
+The square is divided into 4 quadrants. -> Children of the root node.
+    If the quadrant is completely white or black, it means that it corresponds to a black or white sheet.
+    If it has both black and white nodes, said quadrant is divided again. */
+#pragma region Exercise6
+
+#pragma endregion
