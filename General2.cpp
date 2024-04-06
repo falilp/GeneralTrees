@@ -144,6 +144,28 @@ typical of a general tree that are multiples of 3.
 */
 #pragma region Exercise5
 
+template <typename tValue>
+unsigned int countDescendants(const Agen<tValue> &agen, const typename Agen<tValue>::nodo node){
+    if(node == agen.NODO_NULO) return 0;
+    else return 1 + countDescendants(agen,agen.hermDrcho(node)) + countDescendants(agen,agen.hijoIzqdo(node));
+}
+
+template <typename tValue>
+unsigned int MultiplesOfThree(const Agen<tValue> &agen, const typename Agen<tValue>::nodo node){
+    if(node == agen.NODO_NULO) return 0;
+    else if(countDescendants(agen,agen.hijoIzqdo(node))%3 == 0) return 1 + 
+        MultiplesOfThree(agen,agen.hermDrcho(node)) + 
+        MultiplesOfThree(agen,agen.hijoIzqdo(node));
+    else return MultiplesOfThree(agen,agen.hermDrcho(node)) + 
+        MultiplesOfThree(agen,agen.hijoIzqdo(node));
+}
+
+template <typename tValue>
+unsigned int descendantsMultiplesOfThree(const Agen<tValue> &agen){
+    if(agen.arbolVacio()) return 0;
+    else return  100*(descendantsMultiplesOfThree(agen,agen,raiz())/countDescendants(agen,agen.hijoIzqdo(agen.raiz())));
+}
+
 #pragma endregion
 
 /* Exercise 5: Implements a generic function that transforms a General tree of a generic type tValue, eliminating the own 
