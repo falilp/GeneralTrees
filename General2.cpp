@@ -138,10 +138,18 @@ unsigned int degreeOfAgen(const Agen<tValue> &agen){
 
 #pragma endregion
 
-/* Exercise 5: Implements a generic function that transforms a General tree of a generic type T, eliminating the own 
+/*
+Implement an applet that returns the percentage of descendants
+typical of a general tree that are multiples of 3.
+*/
+#pragma region Exercise5
+
+#pragma endregion
+
+/* Exercise 5: Implements a generic function that transforms a General tree of a generic type tValue, eliminating the own 
 descendants of all those nodes whose content is, at the same time, greater than or equal to their own ancestors and
 less than or equal to their own descendants. */
-#pragma region Exercise5
+#pragma region Exercise6
 
 #pragma endregion
 
@@ -153,6 +161,6 @@ less than or equal to their own descendants. */
 The square is divided into 4 quadrants. -> Children of the root node.
     If the quadrant is completely white or black, it means that it corresponds to a black or white sheet.
     If it has both black and white nodes, said quadrant is divided again. */
-#pragma region Exercise6
+#pragma region Exercise7
 
 #pragma endregion
