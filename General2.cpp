@@ -19,12 +19,12 @@ unsigned int siblings(const Agen<tValue> &agen, const typename Agen<tValue>::nod
     if(node == agen.NODO_NULO) return 0;
     else{
         unsigned int count = 0;
-        typename Agen<tValue>::nodo compareNode = agen.hijoIzqdo(node);
-        typename Agen<tValue>::nodo auxiliarNode = agen.hijoIzqdo(node);
+        typename Agen<tValue>::nodo compareNode = node;
+        typename Agen<tValue>::nodo auxiliarNode = node;
         auxiliarNode = agen.hermDrcho(auxiliarNode);
 
         while(auxiliarNode != agen.NODO_NULO){
-            if(reflected(agen,compareNode,auxiliarNode)) count++;
+            if(reflected(agen,agen.hijoIzqdo(compareNode),agen.hijoIzqdo(auxiliarNode))) count++;
             //count += (reflected(agen,compareNode,auxiliarNode) ? 1 : 0);
             auxiliarNode = agen.hermDrcho(auxiliarNode);
         }
@@ -36,7 +36,7 @@ unsigned int siblings(const Agen<tValue> &agen, const typename Agen<tValue>::nod
 template <typename tValue>
 unsigned int numberSiblings(const Agen<tValue> &agen){
     if(agen.arbolVacio()) return 0;
-    else return siblings(agen,agen.raiz());
+    else return siblings(agen,agen.hijoIzqdo(agen.raiz()));
 }
 
 #pragma endregion
