@@ -111,6 +111,7 @@ unsigned int maximunImbalance(const Agen<tValue> &agen){
 
 #pragma endregion
 
+
 /* Exercise 4: Implements a subprogram that, given a general tree, calculates its degree. */
 #pragma region Exercise4
 
@@ -137,6 +138,7 @@ unsigned int degreeOfAgen(const Agen<tValue> &agen){
 }
 
 #pragma endregion
+
 
 /*
 Implement an applet that returns the percentage of descendants
@@ -168,12 +170,14 @@ unsigned int descendantsMultiplesOfThree(const Agen<tValue> &agen){
 
 #pragma endregion
 
+
 /* Exercise 5: Implements a generic function that transforms a General tree of a generic type tValue, eliminating the own 
 descendants of all those nodes whose content is, at the same time, greater than or equal to their own ancestors and
 less than or equal to their own descendants. */
 #pragma region Exercise6
 
 #pragma endregion
+
 
 /* Exercise 6: Represent a flat figure:
     Quaternary Tree They have exactly 0 or 4 children.
